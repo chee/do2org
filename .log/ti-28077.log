@@ -1,0 +1,49 @@
+[13:25:47.607] Global cache location '/home/chee/.cache/typescript/3.6', safe file path '/home/chee/.local/lib/node_modules/typescript/lib/typingSafeList.json', types map path /home/chee/.local/lib/node_modules/typescript/lib/typesMap.json
+[13:25:47.609] Processing cache location '/home/chee/.cache/typescript/3.6'
+[13:25:47.610] Trying to find '/home/chee/.cache/typescript/3.6/package.json'...
+[13:25:47.612] Loaded content of '/home/chee/.cache/typescript/3.6/package.json': {"private":true,"dependencies":{"types-registry":"^0.1.467"},"devDependencies":{"@types/atob":"^2.1.2","@types/brace-expansion":"^1.1.0","@types/busboy":"^0.2.3","@types/bytes":"^3.0.0","@types/classnames":"^2.2.9","@types/content-disposition":"^0.5.2","@types/content-type":"^1.1.3","@types/cssnano":"^4.0.0","@types/defined":"^1.0.0","@types/dicer":"^0.2.0","@types/invariant":"^2.2.30","@types/js-cookie":"^2.2.2","@types/micro":"^7.3.3","@types/mime-db":"^1.27.0","@types/mime-types":"^2.1.0","@types/minimatch":"^3.0.3","@types/minimist":"^1.2.0","@types/mkdirp":"^0.5.2","@types/node":"^12.12.6","@types/node-fetch":"^2.5.2","@types/parcel-bundler":"^1.12.1","@types/path-is-inside":"^1.0.0","@types/range-parser":"^1.2.3","@types/react":"^16.9.13","@types/react-is":"^16.7.1","@types/react-redux":"^7.1.5","@types/redux-actions":"^2.6.1","@types/serve-handler":"^6.1.0","@types/sprintf":"^0.1.0","@types/timelinejs":"0.0.27"}}
+[13:25:47.613] Loaded content of '/home/chee/.cache/typescript/3.6/package-lock.json'
+[13:25:47.636] Adding entry into typings cache: 'atob' => '/home/chee/.cache/typescript/3.6/node_modules/@types/atob/index.d.ts'
+[13:25:47.642] Adding entry into typings cache: 'brace-expansion' => '/home/chee/.cache/typescript/3.6/node_modules/@types/brace-expansion/index.d.ts'
+[13:25:47.648] Adding entry into typings cache: 'busboy' => '/home/chee/.cache/typescript/3.6/node_modules/@types/busboy/index.d.ts'
+[13:25:47.655] Adding entry into typings cache: 'bytes' => '/home/chee/.cache/typescript/3.6/node_modules/@types/bytes/index.d.ts'
+[13:25:47.664] Adding entry into typings cache: 'classnames' => '/home/chee/.cache/typescript/3.6/node_modules/@types/classnames/index.d.ts'
+[13:25:47.667] Adding entry into typings cache: 'content-disposition' => '/home/chee/.cache/typescript/3.6/node_modules/@types/content-disposition/index.d.ts'
+[13:25:47.672] Adding entry into typings cache: 'content-type' => '/home/chee/.cache/typescript/3.6/node_modules/@types/content-type/index.d.ts'
+[13:25:47.677] Adding entry into typings cache: 'cssnano' => '/home/chee/.cache/typescript/3.6/node_modules/@types/cssnano/index.d.ts'
+[13:25:47.686] Adding entry into typings cache: 'defined' => '/home/chee/.cache/typescript/3.6/node_modules/@types/defined/index.d.ts'
+[13:25:47.692] Adding entry into typings cache: 'dicer' => '/home/chee/.cache/typescript/3.6/node_modules/@types/dicer/index.d.ts'
+[13:25:47.696] Adding entry into typings cache: 'invariant' => '/home/chee/.cache/typescript/3.6/node_modules/@types/invariant/index.d.ts'
+[13:25:47.703] Adding entry into typings cache: 'js-cookie' => '/home/chee/.cache/typescript/3.6/node_modules/@types/js-cookie/index.d.ts'
+[13:25:47.707] Adding entry into typings cache: 'micro' => '/home/chee/.cache/typescript/3.6/node_modules/@types/micro/index.d.ts'
+[13:25:47.712] Adding entry into typings cache: 'mime-db' => '/home/chee/.cache/typescript/3.6/node_modules/@types/mime-db/index.d.ts'
+[13:25:47.717] Adding entry into typings cache: 'mime-types' => '/home/chee/.cache/typescript/3.6/node_modules/@types/mime-types/index.d.ts'
+[13:25:47.720] Adding entry into typings cache: 'minimatch' => '/home/chee/.cache/typescript/3.6/node_modules/@types/minimatch/index.d.ts'
+[13:25:47.727] Adding entry into typings cache: 'minimist' => '/home/chee/.cache/typescript/3.6/node_modules/@types/minimist/index.d.ts'
+[13:25:47.730] Adding entry into typings cache: 'mkdirp' => '/home/chee/.cache/typescript/3.6/node_modules/@types/mkdirp/index.d.ts'
+[13:25:47.742] Adding entry into typings cache: 'node' => '/home/chee/.cache/typescript/3.6/node_modules/@types/node/ts3.2/index.d.ts'
+[13:25:47.748] Adding entry into typings cache: 'node-fetch' => '/home/chee/.cache/typescript/3.6/node_modules/@types/node-fetch/index.d.ts'
+[13:25:47.754] Adding entry into typings cache: 'parcel-bundler' => '/home/chee/.cache/typescript/3.6/node_modules/@types/parcel-bundler/index.d.ts'
+[13:25:47.757] Adding entry into typings cache: 'path-is-inside' => '/home/chee/.cache/typescript/3.6/node_modules/@types/path-is-inside/index.d.ts'
+[13:25:47.762] Adding entry into typings cache: 'range-parser' => '/home/chee/.cache/typescript/3.6/node_modules/@types/range-parser/index.d.ts'
+[13:25:47.771] Adding entry into typings cache: 'react' => '/home/chee/.cache/typescript/3.6/node_modules/@types/react/index.d.ts'
+[13:25:47.779] Adding entry into typings cache: 'react-is' => '/home/chee/.cache/typescript/3.6/node_modules/@types/react-is/index.d.ts'
+[13:25:47.785] Adding entry into typings cache: 'react-redux' => '/home/chee/.cache/typescript/3.6/node_modules/@types/react-redux/index.d.ts'
+[13:25:47.789] Adding entry into typings cache: 'redux-actions' => '/home/chee/.cache/typescript/3.6/node_modules/@types/redux-actions/index.d.ts'
+[13:25:47.793] Adding entry into typings cache: 'serve-handler' => '/home/chee/.cache/typescript/3.6/node_modules/@types/serve-handler/index.d.ts'
+[13:25:47.798] Adding entry into typings cache: 'sprintf' => '/home/chee/.cache/typescript/3.6/node_modules/@types/sprintf/index.d.ts'
+[13:25:47.802] Adding entry into typings cache: 'timelinejs' => '/home/chee/.cache/typescript/3.6/node_modules/@types/timelinejs/index.d.ts'
+[13:25:47.802] Finished processing cache location '/home/chee/.cache/typescript/3.6'
+[13:25:47.803] Process id: 28084
+[13:25:47.803] NPM location: /usr/bin/npm (explicit '--npmLocation' not  provided)
+[13:25:47.803] validateDefaultNpmLocation: false
+[13:25:47.803] Npm config file: /home/chee/.cache/typescript/3.6/package.json
+[13:25:47.803] Updating types-registry npm package...
+[13:25:47.804] Exec: /usr/bin/npm install --ignore-scripts types-registry@latest
+[13:25:49.472]     Succeeded. stdout:
+    + types-registry@0.1.467
+    updated 1 package and audited 71 packages in 1.005s
+found 0 vulnerabilities
+
+
+[13:25:49.472] Updated types-registry npm package

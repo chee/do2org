@@ -1,0 +1,8 @@
+* day one to org mode
+
+Quick program to convert day one to org mode journal format
+
+** Limitations
+
+- doesn't do images properly
+- forgot to add sorting
