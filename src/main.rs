@@ -2,10 +2,19 @@ use std::fs;
 
 pub mod day_one {
     use chrono::prelude::*;
+    use lazy_static::lazy_static;
+    use regex::Regex;
     use serde::Deserialize;
     use std::collections::HashMap;
     use std::io::Write;
     use std::process::{Command, Stdio};
+
+    lazy_static! {
+        static ref PHOTO_REGEX: Regex = Regex::new(r"\[\[dayone-moment://[^\]]+\]\]").unwrap();
+        static ref MARKDOWN_PHOTO_REGEX: Regex =
+            Regex::new(r"!\[\]\(dayone-moment://[^)]+\)").unwrap();
+        static ref MARKDOWN_HEADING_REGEX: Regex = Regex::new(r"^#+\s").unwrap();
+    }
 
     #[derive(Deserialize)]
     pub struct Metadata {
@@ -48,6 +57,20 @@ pub mod day_one {
         }
     }
 
+    #[derive(Deserialize, Debug, Clone)]
+    #[serde(rename_all = "camelCase")]
+    pub struct Photo {
+        pub md5: String,
+        pub r#type: String,
+        pub order_in_entry: u8,
+    }
+
+    impl Photo {
+        pub fn link(&self) -> String {
+            format!["[[./images/{}.{}]]", self.md5, self.r#type]
+        }
+    }
+
     #[derive(Deserialize, Debug)]
     #[serde(rename_all = "camelCase")]
     pub struct Entry {
@@ -57,18 +80,19 @@ pub mod day_one {
         pub location: Option<Location>,
         pub weather: Option<Weather>,
         pub music: Option<Music>,
+        pub photos: Option<Vec<Photo>>,
     }
 
     fn get_moon(moon: &str) -> String {
         match moon {
             "new" => "🌑",
-            "full" => "🌕",
-            "first-quarter" => "🌓",
-            "last-quarter" => "🌗",
             "waning-crescent" => "🌘",
-            "waxing-crescent" => "🌒",
+            "last-quarter" => "🌗",
             "waning-gibbous" => "🌖",
+            "full" => "🌕",
             "waxing-gibbous" => "🌔",
+            "first-quarter" => "🌓",
+            "waxing-crescent" => "🌒",
             _ => panic!("fake moon"),
         }
         .to_string()
@@ -115,18 +139,23 @@ pub mod day_one {
             props
         }
 
-        pub fn title(&self) -> Option<String> {
+        pub fn title(&self, first_photo_link: Option<String>) -> Option<String> {
             if let Some(text) = &self.text {
                 if let Some(line) = text.lines().next() {
-                    let line = line.replace("### ", "");
-                    let line = line.replace("# ", "");
+                    let line = MARKDOWN_HEADING_REGEX.replace(&line, "").to_string();
+                    let line = match first_photo_link {
+                        Some(first_photo_link) => MARKDOWN_PHOTO_REGEX
+                            .replace(&line, first_photo_link.as_str())
+                            .to_string(),
+                        None => line,
+                    };
                     return Some(line.to_string());
                 }
             }
             None
         }
 
-        pub fn body(&self) -> Option<String> {
+        pub fn body(&self, photos: &Option<Vec<Photo>>) -> Option<String> {
             if let Some(text) = &self.text {
                 let mut pandoc = Command::new("pandoc")
                     .args(&["-f", "markdown", "-t", "org", "--shift-heading-level-by=4"])
@@ -146,7 +175,16 @@ pub mod day_one {
 
                 let out = pandoc.wait_with_output().expect("Failed to read stdout");
                 let panbody = String::from_utf8_lossy(&out.stdout).to_string();
-                let body = panbody.lines().skip(4).collect::<Vec<&str>>().join("\n");
+                let mut body = panbody.lines().skip(4).collect::<Vec<&str>>().join("\n");
+                if let Some(photos) = photos {
+                    let mut photos: Vec<Photo> = photos.to_vec();
+                    photos.sort_by_key(|p| p.order_in_entry);
+                    for photo in photos {
+                        body = PHOTO_REGEX
+                            .replace(&body, photo.link().as_str())
+                            .to_string();
+                    }
+                }
                 return Some(body);
             }
             None
@@ -234,20 +272,36 @@ pub mod time_tree {
         }
 
         pub fn print(&self) {
-            for (y, year) in &self.years {
+            let mut year_nums: Vec<_> = self.years.keys().collect();
+            year_nums.sort();
+            for y in year_nums {
+                let year = self.years.get(y).unwrap();
+                let mut month_nums: Vec<_> = year.months.keys().collect();
                 println!("* {}", y);
-                for (m, month) in &year.months {
+                month_nums.sort();
+                for m in month_nums {
+                    let month = year.months.get(m).unwrap();
+                    let mut day_nums: Vec<_> = month.days.keys().collect();
+                    day_nums.sort();
                     println!("** {}-{} {}", y, m, Month::name_from(m));
-                    for (d, day) in &month.days {
+                    for d in day_nums {
+                        let day = month.days.get(d).unwrap();
                         println!("*** {}-{}-{} {}", y, m, d, Day::name_from(y, m, d));
                         for entry in &day.entries {
-                            println!("**** {}", entry.title().unwrap_or("Empty".to_string()));
+                            let first_photo = match &entry.photos {
+                                Some(photos) => Some(photos[0].link()),
+                                None => None,
+                            };
+                            println!(
+                                "**** {}",
+                                entry.title(first_photo).unwrap_or("Empty".to_string())
+                            );
                             println!(":PROPERTIES:");
                             for (prop, value) in &entry.properties() {
                                 println!(":{}: {}", prop, value);
                             }
                             println!(":END:");
-                            println!("{}", entry.body().unwrap_or("".to_string()));
+                            println!("{}", entry.body(&entry.photos).unwrap_or("".to_string()));
                         }
                     }
                 }
